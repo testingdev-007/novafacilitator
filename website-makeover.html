@@ -1,67 +1,185 @@
-# Website Makeover — Combined Reference
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>NovaPay — Website Makeover Reference</title>
+  <style>
+    :root { --bg:#f4f5f9; --card:#fff; --ink:#1a1d29; --text:#374151; --muted:#5b6270; --border:#d8dce6; --accent:#5a50e0; --tint:#eeedfb; --good:#0f8a5f; --warn:#a15c00; --bad:#a3194b; --shadow:0 18px 40px rgba(26,29,41,.1); --radius:22px; }
+    * { box-sizing:border-box; }
+    html, body { margin:0; min-height:100%; }
+    body { font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif; color:var(--text); line-height:1.6; padding:28px 16px 56px; background:radial-gradient(circle at top left,rgba(90,80,224,.13),transparent 30%),radial-gradient(circle at top right,rgba(29,111,168,.12),transparent 28%),linear-gradient(180deg,#fff 0%,var(--bg) 100%); }
+    .skip { position:absolute; left:-999px; top:8px; background:var(--accent); color:#fff; padding:8px 12px; border-radius:8px; }
+    .skip:focus { left:8px; z-index:10; }
+    .wrap { max-width:1040px; margin:0 auto; }
+    nav.top { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+    nav.top a, .jump a { padding:8px 14px; border-radius:999px; background:#fff; border:1px solid var(--border); color:var(--accent); font-weight:700; text-decoration:none; font-size:.9rem; }
+    a:focus-visible, input:focus-visible, summary:focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+    .hero { background:linear-gradient(135deg,#11152a 0%,#1f2350 55%,#5a50e0 100%); color:#fff; border-radius:28px; padding:32px; box-shadow:var(--shadow); margin-bottom:20px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:#d7d4ff; margin-bottom:10px; }
+    h1,h2,h3,p { margin:0; }
+    h1 { font-size:clamp(2rem,4vw,3.2rem); line-height:1.08; margin-bottom:14px; }
+    .lede { max-width:70ch; color:rgba(255,255,255,.92); font-size:1.05rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; margin-bottom:18px; }
+    h2 { color:var(--ink); font-size:1.35rem; margin-bottom:6px; }
+    h3 { color:var(--ink); font-size:1.05rem; margin:20px 0 8px; }
+    .sub { color:var(--muted); margin-bottom:10px; }
+    .note { border-left:5px solid var(--accent); background:var(--tint); border-radius:12px; padding:14px 16px; margin-top:14px; }
+    .jump { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .progress { display:inline-block; margin-top:14px; font-weight:800; color:var(--good); }
+    ul.check { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+    ul.check li { border:1px solid var(--border); border-radius:14px; background:#fbfcff; padding:12px 14px; }
+    ul.check label { display:flex; gap:12px; align-items:flex-start; cursor:pointer; }
+    ul.check input { width:20px; height:20px; margin-top:3px; flex-shrink:0; accent-color:var(--accent); }
+    ul.check .where { display:block; color:var(--muted); font-size:.92rem; margin-top:2px; }
+    .tag { display:inline-block; font-size:.72rem; font-weight:800; padding:2px 9px; border-radius:999px; margin-left:6px; background:var(--tint); color:var(--accent); vertical-align:middle; }
+    .tag.new { background:rgba(161,92,0,.12); color:var(--warn); }
+    .tag.star { background:#fde7ee; color:var(--bad); }
+    code { background:#f0f1f6; padding:1px 6px; border-radius:6px; font-size:.9em; }
+    details { margin-top:6px; }
+    summary { cursor:pointer; font-weight:800; color:var(--ink); padding:6px 0; }
+    footer { text-align:center; color:var(--muted); font-size:.9rem; margin-top:24px; }
+  </style>
+</head>
+<body>
+  <a class='skip' href='#main'>Skip to content</a>
+  <div class='wrap'>
+    <nav class='top' aria-label='NovaPay guides'>
+      <a href='how-we-work.html'>How we work today</a>
+      <a href='prompting-intro.html'>Prompting with Copilot</a>
+      <a href='persona-wizard.html'>Persona wizard</a>
+      <a href='inspiration.html'>Inspiration</a>
+      <a href='talking-points.html'>Talking points</a>
+      <a href='novapay-timetable.html'>Timetable</a>
+    </nav>
 
-This file collects the intended bugs, design flaws, and checklist items for both dashboard challenges in one place.
+    <header class='hero'>
+      <div class='eyebrow'>NovaPay · Facilitator answers</div>
+      <h1>Website Makeover — the full answer sheet</h1>
+      <p class='lede'>This is the single source of truth for every planted bug and design flaw in <code>bank-dashboard-01.html</code> and <code>bank-dashboard-02.html</code>. Fix bugs first, then design, then aim for gold standard.</p>
+      <div class='jump' aria-label='Jump to a section'>
+        <a href='#d1'>Dashboard 1</a><a href='#d2'>Dashboard 2</a><a href='#gold'>Gold standard</a><a href='#notes'>Facilitator notes</a>
+      </div>
+    </header>
 
-## Section 1 — `bank-dashboard-01.html`
+    <main id='main'>
+      <section class='card' aria-labelledby='how-title'>
+        <h2 id='how-title'>How to use this page</h2>
+        <p>Tick items off as a group finds them. A <span class='tag new'>Extra find</span> tag marks issues that were not on the original list but are genuinely in the file.</p>
+        <p class='progress' id='progress' role='status' aria-live='polite'></p>
+      </section>
 
-### Bugs
-- [ ] The balance number is invisible on the hero card.
-- [ ] The balance card layout is broken because the closing structure is missing.
-- [ ] Costa Coffee is shown as money coming in instead of money out.
-- [ ] The Withdraw button does nothing.
-- [ ] Withdrawing increases the balance instead of reducing it.
-- [ ] The interest calculator gives the wrong answer.
-- [ ] The balance display never updates on screen because the script targets the wrong element.
-- [ ] Invalid withdrawals are not blocked.
-- [ ] The interest calculator can show `NaN`.
-- [ ] The Withdraw button uses an arrow cursor instead of a pointer.
+      <section class='card' id='d1' aria-labelledby='d1-title'>
+        <h2 id='d1-title'>Dashboard 1 — <code>bank-dashboard-01.html</code></h2>
+        <p class='sub'>Personal current account. 12 bugs, 12 design flaws.</p>
 
-### Design flaws
-- [ ] Balance text is hard to read.
-- [ ] Header action buttons are too small.
-- [ ] Icon buttons lack accessible names.
-- [ ] Inputs and buttons do not show a clear focus state.
-- [ ] Transaction dates are too small and low contrast.
-- [ ] The layout is weak on narrow screens.
-- [ ] Status messaging relies too much on colour.
-- [ ] The interest calculator labels are not fully connected.
-- [ ] The Withdraw field uses the wrong input type for mobile.
-- [ ] Buttons need better hover and pressed states.
+        <h3>Bugs</h3>
+        <ul class='check'>
+          <li><label><input type='checkbox'><span><strong>Balance is invisible.</strong> <span class='tag'>★</span><span class='where'><code>.balance-amount</code> is <code>#0F1340</code>, the same colour as the hero background. Make it white.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Balance card is never closed.</strong> <span class='tag'>★★</span><span class='where'>The <code>.balance-hero</code> div is missing its closing <code>&lt;/div&gt;</code>, so the stats row sits inside the hero card.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Costa Coffee is money in.</strong> <span class='tag'>★</span><span class='where'>It has class <code>credit</code> and <code>+£3.80</code>. Should be <code>debit</code> and <code>−£3.80</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Withdraw button does nothing.</strong> <span class='tag'>★</span><span class='where'>Typo: <code>onlick</code> should be <code>onclick</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Withdrawing increases the balance.</strong> <span class='tag'>★</span><span class='where'><code>balance = balance + amount</code> should subtract.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Balance on screen never updates.</strong> <span class='tag'>★★</span><span class='where'>The script looks for <code>balence-display</code> (typo). Check the Console for the error.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Invalid withdrawals are not blocked.</strong> <span class='tag'>★★</span><span class='where'>Empty, zero, negative, non-numeric and more-than-balance amounts all go through. The <code>wd-error</code> alert is never used.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Interest calculator gives the wrong answer.</strong> <span class='tag'>★★</span><span class='where'><code>principal * rate * 12</code> is wrong. For 12 months it is <code>principal * (rate / 100)</code>, so £1,000 at 4.5% is £45.00.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Interest calculator can show NaN.</strong> <span class='tag'>★★</span><span class='where'>No check for empty or invalid inputs before calculating.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Withdraw button shows an arrow cursor.</strong> <span class='tag'>★</span><span class='where'><code>.btn</code> has <code>cursor: default</code>. Should be <code>pointer</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Money Out total is wrong and never updates.</strong> <span class='tag new'>Extra find</span><span class='where'>Hard-coded <code>−£56.27</code>; the transactions add up to £57.08 once Costa is a debit. It also does not change after a withdrawal.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Money formatting is inconsistent.</strong> <span class='tag new'>Extra find</span><span class='where'>HTML shows <code>£1,250.00</code> but the script writes <code>£1250.00</code> (no thousands separator). Use <code>toLocaleString('en-GB', {style:'currency', currency:'GBP'})</code>.</span></span></label></li>
+        </ul>
 
-## Section 2 — `bank-dashboard-02.html`
+        <h3>Design flaws</h3>
+        <ul class='check'>
+          <li><label><input type='checkbox'><span><strong>Hard-to-read text on the hero.</strong><span class='where'>Eyebrow and account name are 55–65% white on dark purple, and the balance text is hidden (see bug 1).</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Header buttons are too small.</strong><span class='where'><code>.icon-btn</code> is 28×28px. Aim for at least 44×44px.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Icon buttons have no accessible names.</strong><span class='where'>The 🔔 and ⚙️ buttons need <code>aria-label</code>. The avatar needs a label or <code>aria-hidden</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>No visible keyboard focus.</strong><span class='where'><code>input</code> has <code>outline: none</code> and nothing replaces it. Buttons have no focus style at all.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Muted text is too faint.</strong> <span class='tag new'>Extra find</span><span class='where'><code>--muted: #A9AFC0</code> on white is about 2.2:1. It is used for labels, card titles and stat labels. Needs 4.5:1.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Transaction dates are tiny and faint.</strong><span class='where'><code>.tx-date</code> is <code>0.65em</code> in the faint muted colour.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Weak on narrow screens.</strong><span class='where'>There are no media queries. <code>.two-col</code> stays two columns at phone width.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Messages rely on colour alone.</strong><span class='where'>Success and error alerts are only green or red, with no icon or word like Error. They are not announced to screen readers (<code>role='alert'</code> or <code>aria-live</code>).</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Interest calculator labels are not connected.</strong><span class='where'>The two labels have no <code>for</code> and the inputs have no matching <code>id</code>s for the labels.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Withdraw field has the wrong input type.</strong><span class='where'><code>type='text'</code>. Use <code>type='number'</code> with <code>inputmode='decimal'</code>, <code>step='0.01'</code> and <code>min='0'</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>No hover or pressed states on buttons.</strong><span class='where'>Add <code>:hover</code>, <code>:active</code> and <code>:focus-visible</code> styles.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Weak page structure.</strong> <span class='tag new'>Extra find</span><span class='where'>No <code>&lt;h1&gt;</code>; card titles are <code>div</code>s, not headings; transactions are not a list.</span></span></label></li>
+        </ul>
+      </section>
 
-### Bugs
-- [ ] The mortgage balance, payment, or summary values do not update consistently.
-- [ ] Overpayment validation allows invalid or impossible values.
-- [ ] The overpayment calculation can produce the wrong balance or repayment outcome.
-- [ ] The schedule or repayment figures do not reflect the current mortgage state after a change.
-- [ ] The interest/projection calculator can show incorrect or unhelpful output.
-- [ ] Console errors may prevent some interactions from working correctly.
+      <section class='card' id='d2' aria-labelledby='d2-title'>
+        <h2 id='d2-title'>Dashboard 2 — <code>bank-dashboard-02.html</code></h2>
+        <p class='sub'>Mortgage hub. 9 bugs, 11 design flaws. There are no Console errors in this file — the problems are in the logic.</p>
 
-### Design flaws
-- [ ] The page needs stronger accessibility for keyboard and screen reader users.
-- [ ] The layout should adapt more cleanly on smaller screens.
-- [ ] Buttons, inputs, and cards need more polished spacing and hierarchy.
-- [ ] Important messages should be clearer and not depend on colour alone.
-- [ ] The page should feel more like a premium mortgage dashboard.
-- [ ] Hover, focus, and active states should be more obvious.
-- [ ] Form controls should be easier to scan and use.
+        <h3>Bugs</h3>
+        <ul class='check'>
+          <li><label><input type='checkbox'><span><strong>Calculate actually commits the overpayment.</strong> <span class='tag'>★★</span><span class='where'>The card says to test before you commit, but <code>makeOverpayment()</code> permanently reduces <code>mortgage.balance</code>. Clicking twice takes the balance down twice. Needs a preview and a separate Confirm.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Reset does not undo anything.</strong> <span class='tag'>★★</span><span class='where'><code>resetOverpayment()</code> only clears the form. Balance, progress bar and term stay changed.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>The two overpayment options behave identically.</strong> <span class='tag'>★★★</span><span class='where'>Reduce term and Reduce monthly payment both shorten the term; <code>monthlyPayment</code> is never recalculated. Only the note text differs.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Term reduction is a made-up number.</strong> <span class='tag'>★★★</span><span class='where'><code>Math.ceil(amount / 400)</code> is not based on the rate or the payment. Use the amortisation formula, or at least a sensible estimate.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Term display hides changes.</strong> <span class='tag'>★★</span><span class='where'><code>Math.round(monthsLeft / 12) + ' yrs'</code> shows 19 yrs before and after a small overpayment. Show years and months.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Annual allowance is not really enforced.</strong> <span class='tag'>★★★</span><span class='where'>Each payment is compared with £10,000, but total overpaid this year is never tracked, so repeated overpayments exceed it. Amounts with more than 2 decimal places are also accepted.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Schedule is static and inconsistent.</strong> <span class='tag'>★★</span><span class='where'><code>upcomingPayments</code> never changes after an overpayment. The £189.24 interest adjustment does not match 4.89% on £185,420 (about £755 a month). Dates and Due in 10 days are hard-coded.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Interest checker ignores Months remaining.</strong> <span class='tag'>★★</span><span class='where'>The field is required but unused, and the button says Project payment while the result is monthly interest only.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Money formatting flips on load.</strong> <span class='tag new'>Extra find</span><span class='where'>HTML says <code>£185,420.00</code>; <code>formatMoney()</code> immediately replaces it with <code>£185420.00</code>. Use <code>Intl.NumberFormat</code> or <code>toLocaleString</code>.</span></span></label></li>
+        </ul>
 
-## Section 3 — Suggested checklist format
+        <h3>Design flaws</h3>
+        <ul class='check'>
+          <li><label><input type='checkbox'><span><strong>Pinch-zoom is disabled.</strong> <span class='tag new'>Extra find</span><span class='where'>The viewport has <code>maximum-scale=1, user-scalable=no</code>. Remove both.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>No visible keyboard focus.</strong><span class='where'><code>button, input, select { outline: none }</code>. Add <code>:focus-visible</code> styles and <code>.input-wrap:focus-within</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Buttons and targets are small.</strong><span class='where'><code>.btn</code> is 13px text with 10px padding; icon buttons are 36px. Aim for at least 44px.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Low contrast in several places.</strong> <span class='tag new'>Extra find</span><span class='where'>Green alert text on pale green, 12px muted grey labels, translucent hero stat labels, and very pale input borders (<code>#e5e9f2</code>).</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Messages rely on colour and are not announced.</strong><span class='where'>Alerts, the result box and the Check the inputs message need an icon or word, and <code>role='alert'</code> or <code>aria-live</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Vague validation message.</strong><span class='where'>Check the inputs does not say which field is wrong. Use inline messages linked with <code>aria-describedby</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Weak page structure.</strong> <span class='tag new'>Extra find</span><span class='where'>Card titles are <code>div</code>s, not <code>&lt;h2&gt;</code>; the schedule is not a list.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Progress bar is invisible to assistive tech.</strong> <span class='tag new'>Extra find</span><span class='where'>Needs <code>role='progressbar'</code> with <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code>.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Repayment options look clickable but are not.</strong> <span class='tag new'>Extra find</span><span class='where'>Round up, One-off overpayment and Change payment date are plain divs. Make them real buttons, or style them as information.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Form controls lack guidance.</strong><span class='where'>No <code>step='0.01'</code>, <code>min</code> or <code>inputmode</code>, and no hint showing minimum £25 and remaining allowance.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>No hover or pressed states.</strong><span class='where'>Buttons, icon buttons and option cards all need clearer states.</span></span></label></li>
+        </ul>
+      </section>
 
-Use this pattern in the final page so learners can tick items off as they go:
+      <section class='card' id='gold' aria-labelledby='gold-title'>
+        <h2 id='gold-title'>Gold standard — the final exercise</h2>
+        <p class='sub'>Once the bugs and design flaws are fixed, push each page to this level.</p>
+        <ul class='check'>
+          <li><label><input type='checkbox'><span><strong>Passes a keyboard-only run.</strong><span class='where'>Every control is reachable, in a sensible order, with a clear focus ring.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Meets contrast and target size.</strong><span class='where'>Text at least 4.5:1, controls at least 44px.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Works at 360px wide and at 200% zoom.</strong><span class='where'>No sideways scrolling, nothing cut off.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Clear, announced feedback.</strong><span class='where'>Inline errors, icons plus words, live regions.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Screen-reader friendly.</strong><span class='where'>Headings, labels, lists and a progress bar with real semantics.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Numbers always agree.</strong><span class='where'>Balance, Money In/Out and the transaction list reconcile. Dashboard 1 should add a withdrawal to the list; Dashboard 2 summary, schedule and progress should all reflect the same state.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Safe money actions.</strong><span class='where'>Preview then confirm, with a working undo or reset.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Respects user preferences.</strong><span class='where'>Honours <code>prefers-reduced-motion</code> for any hover or transition effects.</span></span></label></li>
+          <li><label><input type='checkbox'><span><strong>Clean Console and consistent code.</strong><span class='where'>No errors, one currency formatter, no copy-pasted logic.</span></span></label></li>
+        </ul>
+      </section>
 
-### Bugs
-- [ ] Bug name or description here
-- [ ] Another bug here
+      <section class='card' id='notes' aria-labelledby='notes-title'>
+        <h2 id='notes-title'>Facilitator notes</h2>
+        <ul>
+          <li>Fix bugs before design. Most Dashboard 1 bugs are one-line fixes; Dashboard 2 bugs need decisions about how the maths and state should work.</li>
+          <li>Hint ladder: What does the Console say? Do things in a different order. Do the numbers agree? Tab through the page. Try 360px wide.</li>
+          <li>Students will often find the extra items without being asked. Praise it and tick it.</li>
+          <li>Keep the language student-friendly and specific.</li>
+        </ul>
+      </section>
+    </main>
 
-### Design improvements
-- [ ] Improvement name or description here
-- [ ] Another improvement here
-
-## Section 4 — Notes
-
-- Keep the headings clear and separate for each dashboard.
-- Keep the checklist items clickable so learners can mark progress.
-- Keep the language student-friendly and specific.
-- If you want, you can add brief hints under each checklist item.
+    <footer>NovaPay · Website Makeover Reference</footer>
+  </div>
+  <script>
+    (function () {
+      var boxes = document.querySelectorAll('input[type=checkbox]');
+      var out = document.getElementById('progress');
+      function update() {
+        var done = 0;
+        boxes.forEach(function (b) { if (b.checked) done++; });
+        out.textContent = done + ' of ' + boxes.length + ' ticked';
+      }
+      boxes.forEach(function (b) { b.addEventListener('change', update); });
+      update();
+    })();
+  </script>
+</body>
+</html>
