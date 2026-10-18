@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaPay — Timetable (Volunteer Version)</title>
+  <style>
+    :root {
+      --bg: #f4f5f9;
+      --card: #ffffff;
+      --ink: #1a1d29;
+      --text: #374151;
+      --muted: #5b6270;
+      --border: #d8dce6;
+      --accent: #5a50e0;
+      --accent-2: #1d6fa8;
+      --tint: #eeedfb;
+      --good: #0f8a5f;
+      --shadow: 0 18px 40px rgba(26, 29, 41, 0.1);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      padding: 28px 16px 56px;
+      background:
+        radial-gradient(circle at top left, rgba(90,80,224,0.13), transparent 30%),
+        radial-gradient(circle at top right, rgba(29,111,168,0.12), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .skip:focus { left: 8px; z-index: 10; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; }
+    nav.top { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    nav.top a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    nav.top a[aria-current="page"] { background: var(--tint); }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #11152a 0%, #1f2350 55%, #5a50e0 100%);
+      color: #fff;
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #d7d4ff;
+      margin-bottom: 10px;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+    .lede {
+      max-width: 68ch;
+      color: rgba(255,255,255,0.92);
+      font-size: 1.05rem;
+    }
+
+    section.card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+    h2 {
+      color: var(--ink);
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+    h3 {
+      color: var(--ink);
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: var(--tint);
+      color: var(--accent);
+      font-weight: 800;
+      margin-top: 14px;
+    }
+
+    .timeline {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+    .timeline-head,
+    .slot {
+      display: grid;
+      grid-template-columns: 90px minmax(160px, 1fr) minmax(260px, 2.4fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .timeline-head {
+      margin-top: 16px;
+      padding: 0 16px;
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .timeline-head + .timeline { margin-top: 10px; }
+    .slot {
+      background: #fbfcff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .time {
+      font-weight: 800;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .activity { color: var(--ink); font-weight: 700; }
+    .focus { color: var(--text); }
+    .focus-label { display: none; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .tile {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      background: #fbfcff;
+    }
+    .tile .icon { font-size: 1.5rem; }
+    ul { padding-left: 1.2rem; margin: 8px 0 0; }
+    li { margin-bottom: 6px; }
+    details {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-top: 10px;
+      background: #fff;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 720px) {
+      .hero { padding: 20px; }
+      section.card { padding: 18px; }
+      .timeline-head { display: none; }
+      .slot { grid-template-columns: 1fr; gap: 6px; }
+      .focus-label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <nav class="top" aria-label="NovaPay guides">
+      <a href="how-we-work.html">How we work today</a>
+      <a href="prompting-intro.html">Prompting with Copilot</a>
+      <a href="novapay-timetable.html">Timetable</a>
+      <a href="novapay-timetable-volunteers.html" aria-current="page">Timetable (Volunteers)</a>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">NovaPay · Event schedule · Volunteer version</div>
+      <h1>Wednesday 21st October</h1>
+      <p class="lede">The full-day NovaPay timetable with an extra Volunteer Focus column, so you know what to concentrate on during each timeslot.</p>
+      <div class="date-pill" aria-label="event date">📅 Wednesday 21st October</div>
+    </header>
+
+    <main id="main">
+      <section class="card" aria-labelledby="schedule-title">
+        <h2 id="schedule-title">Timetable</h2>
+        <p>Here is the day in order, with what volunteers should focus on in each slot.</p>
+        <div class="timeline-head" aria-hidden="true">
+          <div>Time</div><div>Activity</div><div>Volunteer Focus</div>
+        </div>
+        <ol class="timeline">
+          <li class="slot"><div class="time">09:00</div><div class="activity">Arrival and Registration</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Welcome schools, escort groups, check attendance, starter activities.</div></li>
+          <li class="slot"><div class="time">09:30</div><div class="activity">Welcome and Introduction</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Mark and Jo introduce the session.</div></li>
+          <li class="slot"><div class="time">09:45</div><div class="activity">Website Makeover - NovaPay Edition</div><div class="focus"><span class="focus-label">Volunteer Focus</span>In groups, guided by the developers, students will be shown the GitHub environment and immediately start with the task of fixing bugs, design issues, and improving the page. Page changes will need to be saved and pushed and then the other browser tab refreshed to reflect the iterative changes. There is a second task for students that easily complete the first to the satisfaction of the developers.</div></li>
+          <li class="slot"><div class="time">10:30</div><div class="activity">Break</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Keep students with their school representatives.</div></li>
+          <li class="slot"><div class="time">10:40</div><div class="activity">Effective Prompting &amp; Personas</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Microsoft to work with groups to discuss effective prompting, developers to introduce concept of personas.</div></li>
+          <li class="slot"><div class="time">11:00</div><div class="activity">Feature Creative Collision</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Groups pool ideas for suggestions for their own NovaPay webpage / feature, with developers on hand to flesh ideas out. May need notepads and pens to help the process. Groups must have at least 1 fully formed idea and 1 suggested persona.</div></li>
+          <li class="slot"><div class="time">11:10</div><div class="activity">Feature Build</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Groups begin using Copilot in GitHub to start the iterative process. Groups meet their Product Manager who will discuss and help refine the idea and approve the chosen persona(s). The Product Managers will also check on progress before the end of this session. Groups continue to build and iterate.</div></li>
+          <li class="slot"><div class="time">12:10</div><div class="activity">Lunch</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Encourage students to explore accessibility workstations. Product Managers will meet in private and decide on 1 additional aspect or feature or change of focus and 1 additional persona whose feedback needs taken into account.</div></li>
+          <li class="slot"><div class="time">12:40</div><div class="activity">Feature Build, Test, &amp; Refine</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Help teams restart promptly. They need to incorporate at least 1 aspect of accessibility into their final design(s) and features and test them thoroughly. They will also have a visit from the Product Manager who will give each team their "surprise" feature and persona. Groups will need to decide who will be talking through their output in the Show and Tell. More able groups can tackle a second feature with the help of the developer. Final designs need to be thoroughly tested and have the personas review. Persona review must form part of the Show and Tell.</div></li>
+          <li class="slot"><div class="time">13:50</div><div class="activity">Show &amp; Tell</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Teams demonstrate their final designs and discuss with audience. Max 10 mins per team. Microsoft then decide the "winning team" and hand out certificates.</div></li>
+          <li class="slot"><div class="time">14:20</div><div class="activity">Wrap Up</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Post-it note feedback of the day as a whole, final comments from Jo and Mark.</div></li>
+          <li class="slot"><div class="time">14:30</div><div class="activity">Departure</div><div class="focus"><span class="focus-label">Volunteer Focus</span>Escort schools to the exit and collect visitor passes.</div></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>NovaPay · Wednesday 21st October · Volunteer version</footer>
+  </div>
+</body>
+</html>
